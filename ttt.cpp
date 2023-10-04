@@ -1,16 +1,19 @@
 /*
-Jack Flowers and Ethan Tran
+Authors:Jack Flowers and Ethan Tran
 10/9/23
-Global Functions
+Function Signatures:
 game()
-Description
-Just Tictactoe.
+new_list()
+
+Description:
+Just Tictactoe
+.
 */
 
 #include <iostream>
 using namespace std;
 
-void game(int list[]){ //This is the game board
+void game(char list[]){ //This is the game board
     printf("    a       b       c\n");
     printf("\t|\t|\n");
     printf("1   -   |   -   |   -\n");
@@ -25,24 +28,32 @@ void game(int list[]){ //This is the game board
     printf("\t|\t|\n");
 }
 
+void new_list(string coord){
+}
+
 //Game.
 int main(){
     game();
     //declares array. Number is for amount of squares in tictactoe
-    int memory[9];
+    char memory[] = {'-', '-', '-', '-', '-', '-', '-', '-', '-'};
     int turn = 1;
-    string input;
+    char column;
+    int row;
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
     for(int i = 0; i < 9; i++){
         if(turn % 2 == 0){
-            cout << "Player 2 ";
-            cin >> input;
+            printf("Player 2\n\tEnter row: ");
+            cin >> row;
+            printf("\tEnter column: ");
+            cin >> column;
             turn += 1;
         }
         else{
-            cout << "Player 1 ";
-            cin >> input;
+            printf("Player 1\n\tEnter row: ");
+            cin >> row;
+            printf("\tEnter column: ");
+            cin >> column;
             turn += 1;
         }
     }
