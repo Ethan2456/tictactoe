@@ -28,7 +28,7 @@ void game(char list[]){ //This is the game board
     printf("\t|\t|\n");
 }
 
-void new_list(string coord){
+void new_list(char column, int row){
 }
 
 //Game.
@@ -43,6 +43,7 @@ int main(){
     //% 2; if even then player 2 if not player 1
     for(int i = 0; i < 9; i++){
         if(turn % 2 == 0){
+        //allows user to add columns and rows
             printf("Player 2\n\tEnter row: ");
             cin >> row;
             printf("\tEnter column: ");
@@ -50,6 +51,7 @@ int main(){
             turn += 1;
         }
         else{
+        //allows user to add columns and rows
             printf("Player 1\n\tEnter row: ");
             cin >> row;
             printf("\tEnter column: ");
