@@ -28,7 +28,16 @@ void game(char list[]){ //This is the game board
     printf("\t|\t|\n");
 }
 
-void new_list(char column, int row){
+int column_to_num(char column){
+    if(column == 'a'){
+        return 0;
+    }
+    else if(column == 'b'){
+        return 3;
+    }
+    else{
+        return 6;
+    }
 }
 
 //Game.
@@ -38,6 +47,7 @@ int main(){
     int turn = 1;
     char column;
     int row;
+    int num_column;
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
     game(memory);
@@ -49,15 +59,15 @@ int main(){
             printf("Enter column: ");
             cin >> column;
             turn += 1;
-            if(column == 'a'){
-                memory[(0 + row) - 1] = 'X';
+            num_column = column_to_num(column);
+            while(memory[(num_column + row) - 1] != '-'){
+                printf("That spot is already taken! Please choose another spot.\nEnter row: ");
+                cin >> row;
+                printf("Enter column: ");
+                cin >> column;
+                num_column = column_to_num(column);
             }
-            else if(column == 'b'){
-                memory[(3 + row) - 1] = 'X';
-            }
-            else{
-                memory[(6 + row) - 1] = 'X';
-            }
+            memory[(num_column + row) - 1] = 'X';
             game(memory);
         }
         else{
@@ -67,15 +77,15 @@ int main(){
             printf("Enter column: ");
             cin >> column;
             turn += 1;
-            if(column == 'a'){
-                memory[(0 + row) - 1] = 'O';
+            num_column = column_to_num(column);
+            while(memory[(num_column + row) - 1] != '-'){
+                printf("That spot is already taken! Please choose another spot.\nEnter row: ");
+                cin >> row;
+                printf("Enter column: ");
+                cin >> column;
+                num_column = column_to_num(column);
             }
-            else if(column == 'b'){
-                memory[(3 + row) - 1] = 'O';
-            }
-            else{
-                memory[(6 + row) - 1] = 'O';
-            }
+            memory[(num_column + row) - 1] = 'O';
             game(memory);
         }
     }
