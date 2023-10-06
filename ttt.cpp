@@ -43,8 +43,8 @@ int column_to_num(char column){
 }
 
 int win_condition(char list[]){
-    if(list[0] == 'X' && list[3] == 'X'  && list[6] == 'X'
-       && list[1] == 'X' && list[4] == 'X' && list[7] == 'X'){
+    if((list[0] == 'X' && list[3] == 'X'  && list[6] == 'X')
+       || (list[1] == 'X' && list[4] == 'X' && list[7] == 'X')){
         return 0;
     }
     else{
@@ -85,10 +85,10 @@ int main(){
             memory[(num_column + row) - 1] = 'X';
             game(memory);
             if(win_condition(memory) == true){
-                cout << "it works!";
+                cout << "loser!";
             }
             else{
-                cout << "crap.";
+                cout << "winning";
             }
         }
         else{
