@@ -3,11 +3,12 @@ Authors:Jack Flowers and Ethan Tran
 10/9/23
 Function Signatures:
 game()
-new_list()
+column_to_num()
 
 Description:
-Just Tictactoe
-.
+Lets two people play tictactoe by
+entering the row and column of where
+they want to put their X or O.
 */
 
 #include <iostream>
@@ -28,6 +29,7 @@ void game(char list[]){ //This is the game board
     printf("\t|\t|\n");
 }
 
+//allows for the placement of the column by converting into letter.
 int column_to_num(char column){
     if(column == 'a'){
         return 0;
@@ -40,6 +42,16 @@ int column_to_num(char column){
     }
 }
 
+int win_condition(char list[]){
+    if(list[0] == 'X' && list[3] == 'X'  && list[6] == 'X'
+       && list[1] == 'X' && list[4] == 'X' && list[7] == 'X'){
+        return 0;
+    }
+    else{
+    return 1;
+    }
+}
+
 //Game.
 int main(){
     //declares array. Number is for amount of squares in tictactoe
@@ -48,10 +60,12 @@ int main(){
     char column;
     int row;
     int num_column;
+
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
     game(memory);
     for(int i = 0; i < 9; i++){
+    //checks for which turn V
         if(turn % 2 == 0){
         //allows user to add columns and rows
             printf("Player 2\nEnter row: ");
@@ -60,6 +74,7 @@ int main(){
             cin >> column;
             turn += 1;
             num_column = column_to_num(column);
+        //checks for if the spot is taken.
             while(memory[(num_column + row) - 1] != '-'){
                 printf("That spot is already taken! Please choose another spot.\nEnter row: ");
                 cin >> row;
@@ -69,9 +84,15 @@ int main(){
             }
             memory[(num_column + row) - 1] = 'X';
             game(memory);
+            if(win_condition(memory) == true){
+                cout << "it works!";
+            }
+            else{
+                cout << "crap.";
+            }
         }
         else{
-        //allows user to add columns and rows
+        //allows the first player to add column and rows
             printf("Player 1\nEnter row: ");
             cin >> row;
             printf("Enter column: ");
@@ -88,6 +109,7 @@ int main(){
             memory[(num_column + row) - 1] = 'O';
             game(memory);
         }
+
     }
     return 0;
 }
