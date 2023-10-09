@@ -70,18 +70,22 @@ int main(){
         //allows user to add columns and rows
             printf("Player 2\nEnter spot: ");
             cin >> row >> column;
-            while((row != (1 || 2 || 3)) || (column != ('a' || 'b' || 'c')){
+            while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
                 printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
                 cin >> row >> column;
             }
-            turn += 1;
             num_column = column_to_num(column);
         //checks for if the spot is taken.
             while(memory[(num_column + row) - 1] != '-'){
                 printf("That spot is already taken! Please choose another spot.\nEnter spot: ");
                 cin >> row >> column;
+                while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
+                    printf("That is not a valid spot. Please choose another spot./nEnter spot: ");
+                    cin >> row >> column;
+                }
                 num_column = column_to_num(column);
             }
+            turn += 1;
             memory[(num_column + row) - 1] = 'O';
             game(memory);
             if(win_condition(memory) == true){
@@ -95,13 +99,21 @@ int main(){
         //allows the first player to add column and rows
             printf("Player 1\nEnter spot: ");
             cin >> row >> column;
-            turn += 1;
+            while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
+                printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
+                cin >> row >> column;
+            }
             num_column = column_to_num(column);
             while(memory[(num_column + row) - 1] != '-'){
                 printf("That spot is already taken! Please choose another spot.\nEnter spot: ");
                 cin >> row >> column;
+                while ((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
+                    printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
+                    cin >> row >> column;
+                }
                 num_column = column_to_num(column);
             }
+            turn += 1;
             memory[(num_column + row) - 1] = 'X';
             game(memory);
         }
