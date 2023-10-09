@@ -70,6 +70,10 @@ int main(){
         //allows user to add columns and rows
             printf("Player 2\nEnter spot: ");
             cin >> row >> column;
+            while((row != (1 || 2 || 3)) || (column != ('a' || 'b' || 'c')){
+                printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
+                cin >> row >> column;
+            }
             turn += 1;
             num_column = column_to_num(column);
         //checks for if the spot is taken.
@@ -78,7 +82,7 @@ int main(){
                 cin >> row >> column;
                 num_column = column_to_num(column);
             }
-            memory[(num_column + row) - 1] = 'X';
+            memory[(num_column + row) - 1] = 'O';
             game(memory);
             if(win_condition(memory) == true){
                 cout << "loser!";
@@ -98,7 +102,7 @@ int main(){
                 cin >> row >> column;
                 num_column = column_to_num(column);
             }
-            memory[(num_column + row) - 1] = 'O';
+            memory[(num_column + row) - 1] = 'X';
             game(memory);
         }
 
