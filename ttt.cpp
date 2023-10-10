@@ -4,6 +4,8 @@ Authors:Jack Flowers and Ethan Tran
 Function Signatures:
 game()
 column_to_num()
+win_condition()
+
 
 Description:
 Lets two people play tictactoe by
@@ -60,9 +62,11 @@ int main(){
     char column;
     int row;
     int num_column;
+    int winning = 0;
 
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
+while(winning != 1){
     game(memory);
     for(int i = 0; i < 9; i++){
     //checks for which turn V
@@ -88,13 +92,11 @@ int main(){
             turn += 1;
             memory[(num_column + row) - 1] = 'O';
             game(memory);
-            if(win_condition(memory) == true){
-                cout << "loser!";
-            }
-            else{
-                cout << "winning";
+            if(win_condition(memory) == false){
+                winning = 1;
             }
         }
+
         else{
         //allows the first player to add column and rows
             printf("Player 1\nEnter spot: ");
@@ -116,7 +118,17 @@ int main(){
             turn += 1;
             memory[(num_column + row) - 1] = 'X';
             game(memory);
+            if(win_condition(memory) == false){
+                winning = 1;
+            }
         }
+
+}
+
+if(winning == 1){
+cout << "you win.";
+}
+
 
     }
     return 0;
