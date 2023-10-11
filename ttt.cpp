@@ -42,10 +42,15 @@ int column_to_num(char column){
     }
 }
 
-int win_condition(char list[]){
+int p1_win_condition(char list[]){
     if((list[0] == 'X' && list[3] == 'X'  && list[6] == 'X')
     || (list[1] == 'X' && list[4] == 'X' && list[7] == 'X')
-    || (list[2] == 'X' && list[5] == 'X' && list[8] == 'X')){
+    || (list[2] == 'X' && list[5] == 'X' && list[8] == 'X')
+    || (list[0] == 'X' && list[1] == 'X' && list[2] == 'X')
+    || (list[3] == 'X' && list[4] == 'X' && list[5] == 'X')
+    || (list[6] == 'X' && list[7] == 'X' && list[8] == 'X')
+    || (list[0] == 'X' && list[4] == 'X' && list[8] == 'X')
+    || (list[2] == 'X' && list[4] == 'X' && list[6] == 'X')){
         return 0;
     }
     else{
@@ -65,7 +70,7 @@ int main(){
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
     game(memory);
-    for(int i = 0; i < 9; i++){
+    while(turn < 10){
     //checks for which turn V
         if(turn % 2 == 0){
         //allows user to add columns and rows
@@ -89,7 +94,7 @@ int main(){
             turn += 1;
             memory[(num_column + row) - 1] = 'O';
             game(memory);
-            if(win_condition(memory) == 0){
+            if(p1_win_condition(memory) == 0){
                 cout << "loser!";
             }
         }
@@ -114,8 +119,9 @@ int main(){
             turn += 1;
             memory[(num_column + row) - 1] = 'X';
             game(memory);
-            if(win_condition(memory) == 0){
-                printf("Player 1 wins!");
+            if(p1_win_condition(memory) == 0){
+                printf("Player 1 wins!\n");
+                turn = 100;
             }
         }
 
