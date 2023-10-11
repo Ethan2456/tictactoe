@@ -147,4 +147,7 @@ int main(){
             }
         }
     }
+    if(turn < 100){
+        printf("It's a tie. Neither player wins.\n");
+    }
 }
