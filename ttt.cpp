@@ -45,7 +45,7 @@ int column_to_num(char column){
 }
 
 int p1_win_condition(char list[]){
-    if((list[0] == 'X' && list[3] == 'X'  && list[6] == 'X')
+    if((list[0] == 'X' && list[3] == 'X' && list[6] == 'X')
     || (list[1] == 'X' && list[4] == 'X' && list[7] == 'X')
     || (list[2] == 'X' && list[5] == 'X' && list[8] == 'X')
     || (list[0] == 'X' && list[1] == 'X' && list[2] == 'X')
@@ -53,6 +53,22 @@ int p1_win_condition(char list[]){
     || (list[6] == 'X' && list[7] == 'X' && list[8] == 'X')
     || (list[0] == 'X' && list[4] == 'X' && list[8] == 'X')
     || (list[2] == 'X' && list[4] == 'X' && list[6] == 'X')){
+        return 0;
+    }
+    else{
+        return 1;
+    }
+}
+
+int p2_win_condition(char list[]){
+    if((list[0] == 'O' && list[3] == 'O' && list[6] == 'O')
+    || (list[1] == 'O' && list[4] == 'O' && list[7] == 'O')
+    || (list[2] == 'O' && list[5] == 'O' && list[8] == 'O')
+    || (list[0] == 'O' && list[1] == 'O' && list[2] == 'O')
+    || (list[3] == 'O' && list[4] == 'O' && list[5] == 'O')
+    || (list[6] == 'O' && list[7] == 'O' && list[8] == 'O')
+    || (list[0] == 'O' && list[4] == 'O' && list[8] == 'O')
+    || (list[2] == 'O' && list[4] == 'O' && list[6] == 'O')){
         return 0;
     }
     else{
@@ -68,11 +84,11 @@ int main(){
     char column;
     int row;
     int num_column;
-    int winning = 0;
+
+    printf("Welcome to tictactoe!\nPlayer 1 is X and Player 2 is O.\nWhen choosing a spot, put in the row and then the column. Ex: 2c\n");
 
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
-while(winning != 1){
     game(memory);
     while(turn < 10){
     //checks for which turn V
@@ -98,8 +114,9 @@ while(winning != 1){
             turn += 1;
             memory[(num_column + row) - 1] = 'O';
             game(memory);
-            if(p1_win_condition(memory) == 0){
-                cout << "loser!";
+            if(p2_win_condition(memory) == 0){
+                printf("Player 2 wins!\n");
+                turn = 100;
             }
         }
 
@@ -129,14 +146,5 @@ while(winning != 1){
                 turn = 100;
             }
         }
-
-}
-
-if(winning == 1){
-cout << "you win.";
-}
-
-
     }
-    return 0;
 }
