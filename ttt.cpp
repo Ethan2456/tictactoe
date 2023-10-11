@@ -44,11 +44,12 @@ int column_to_num(char column){
 
 int win_condition(char list[]){
     if((list[0] == 'X' && list[3] == 'X'  && list[6] == 'X')
-       || (list[1] == 'X' && list[4] == 'X' && list[7] == 'X')){
+    || (list[1] == 'X' && list[4] == 'X' && list[7] == 'X')
+    || (list[2] == 'X' && list[5] == 'X' && list[8] == 'X')){
         return 0;
     }
     else{
-    return 1;
+        return 1;
     }
 }
 
@@ -88,11 +89,8 @@ int main(){
             turn += 1;
             memory[(num_column + row) - 1] = 'O';
             game(memory);
-            if(win_condition(memory) == true){
+            if(win_condition(memory) == 0){
                 cout << "loser!";
-            }
-            else{
-                cout << "winning";
             }
         }
         else{
@@ -100,7 +98,7 @@ int main(){
             printf("Player 1\nEnter spot: ");
             cin >> row >> column;
             while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
-                printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
+                printf("That is not a valid spot. stoopid Please choose another spot.\nEnter spot: ");
                 cin >> row >> column;
             }
             num_column = column_to_num(column);
@@ -116,6 +114,9 @@ int main(){
             turn += 1;
             memory[(num_column + row) - 1] = 'X';
             game(memory);
+            if(win_condition(memory) == 0){
+                printf("Player 1 wins!");
+            }
         }
 
     }
