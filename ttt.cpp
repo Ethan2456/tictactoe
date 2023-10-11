@@ -85,7 +85,7 @@ int main(){
     int row;
     int num_column;
 
-    printf("Welcome to tictactoe!\nPlayer 1 is X and Player 2 is O.\nWhen choosing a spot, put in the row and then the column. Ex: 2c\n");
+    printf("Welcome to tictactoe!\nPlayer 1 is X and Player 2 is O.\nWhen choosing a spot, put in the column and then the row. Ex: c2\n");
 
     //Used for deciding turns
     //% 2; if even then player 2 if not player 1
@@ -95,19 +95,19 @@ int main(){
         if(turn % 2 == 0){
         //allows user to add columns and rows
             printf("Player 2\nEnter spot: ");
-            cin >> row >> column;
+            cin >> column >> row;
             while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
                 printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
-                cin >> row >> column;
+                cin >> column >> row;
             }
             num_column = column_to_num(column);
         //checks for if the spot is taken.
             while(memory[(num_column + row) - 1] != '-'){
                 printf("That spot is already taken! Please choose another spot.\nEnter spot: ");
-                cin >> row >> column;
+                cin >> column >> row;
                 while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
                     printf("That is not a valid spot. Please choose another spot./nEnter spot: ");
-                    cin >> row >> column;
+                    cin >> column >> row;
                 }
                 num_column = column_to_num(column);
             }
@@ -123,18 +123,18 @@ int main(){
         else{
         //allows the first player to add column and rows
             printf("Player 1\nEnter spot: ");
-            cin >> row >> column;
+            cin >> column >> row;
             while((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
                 printf("That is not a valid spot. stoopid Please choose another spot.\nEnter spot: ");
-                cin >> row >> column;
+                cin >> column >> row;
             }
             num_column = column_to_num(column);
             while(memory[(num_column + row) - 1] != '-'){
                 printf("That spot is already taken! Please choose another spot.\nEnter spot: ");
-                cin >> row >> column;
+                cin >> column >> row;
                 while ((row > 3) || (row < 1) || ((column != 'a') && (column != 'b') && (column != 'c'))){
                     printf("That is not a valid spot. Please choose another spot.\nEnter spot: ");
-                    cin >> row >> column;
+                    cin >> column >> row;
                 }
                 num_column = column_to_num(column);
             }
