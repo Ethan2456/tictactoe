@@ -4,8 +4,8 @@ Authors:Jack Flowers and Ethan Tran
 Function Signatures:
 game()
 column_to_num()
-win_condition()
-
+p1_win_condition()
+p2_win_conditon()
 
 Description:
 Lets two people play tictactoe by
