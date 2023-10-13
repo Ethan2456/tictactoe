@@ -178,6 +178,7 @@ int main(){
     }
 
 //robot stuff
+//only runs if chosen as 1 play game
 //same thing expect robot determines spots.
     if(num_players == 1){
         game(memory);
