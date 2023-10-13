@@ -6,6 +6,7 @@ game()
 column_to_num()
 p1_win_condition()
 p2_win_conditon()
+robot()
 
 Description:
 Lets two people play tictactoe by
@@ -44,7 +45,7 @@ int column_to_num(char column){
         return 6;
     }
 }
-
+//win condition for player 1 checks for 3 in a row
 int p1_win_condition(char list[]){
     if((list[0] == 'X' && list[3] == 'X' && list[6] == 'X')
     || (list[1] == 'X' && list[4] == 'X' && list[7] == 'X')
@@ -61,6 +62,7 @@ int p1_win_condition(char list[]){
     }
 }
 
+//win condition for player 2 checks for 3 in a row
 int p2_win_condition(char list[]){
     if((list[0] == 'O' && list[3] == 'O' && list[6] == 'O')
     || (list[1] == 'O' && list[4] == 'O' && list[7] == 'O')
@@ -76,7 +78,7 @@ int p2_win_condition(char list[]){
         return 1;
     }
 }
-
+//function for picking by using random function (robot)
 void robot(char list[]){
     int repeat = 0;
     while(repeat == 0){
@@ -101,6 +103,7 @@ int main(){
     int num_column;
     int num_players;
 
+//introduces game and allows to play with robot or 2 people
     printf("Welcome to tictactoe!\nPlayer 1 is X and Player 2 is O.\nWhen choosing a spot, put in the column and then the row. Ex: c2\n");
     printf("Are you playing with 1 player or 2? ");
     cin >> num_players;
@@ -133,8 +136,10 @@ int main(){
                 turn += 1;
                 memory[(num_column + row) - 1] = 'O';
                 game(memory);
+                //checks for win by using function
                 if(p2_win_condition(memory) == 0){
                     printf("Player 2 wins!\n");
+                    //sets turn to 100 to stop game.
                     turn = 100;
                 }
             }
@@ -166,10 +171,14 @@ int main(){
                 }
             }
         }
+        //if amount of turns less then 100 (means no winner) is tie
         if(turn < 100){
             printf("It's a tie. Neither player wins.\n");
         }
     }
+
+//robot stuff
+//same thing expect robot determines spots.
     if(num_players == 1){
         game(memory);
         while(turn < 10){
